@@ -6,6 +6,7 @@ import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.GameObject;
 
+//Gitを導入した。コミットがうまくできるかどうか確認する。
 public class MyGame extends GameEngine implements GameScreenIds
 {
 
