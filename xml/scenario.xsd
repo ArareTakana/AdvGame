@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xsd:element name="Snr">
+    <xsd:complexType>
+      <xsd:sequence minOccurs="1" maxOccurs="unbounded" >
+        <xsd:element name="Bg" type="Bg_type" minOccurs="0" maxOccurs="unbounded" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+
+  <!-- bg(Back Ground)ではBGMと背景画を設定できる．bgのテキストはセリフ以外のストーリ-->
+  <xsd:complexType name="Bg_type" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="Say" type="Say_type" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="Se" type="Se_type" minOccurs="0" maxOccurs="unbounded" />
+      <xsd:element name="Jmp" type="Jmp_type" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:choice>
+    <xsd:attribute name="msc" type="xsd:string" use="optional" />
+    <xsd:attribute name="img" type="xsd:string" use="optional" />
+  </xsd:complexType>
+
+  <!-- sayはセリフ -->
+  <xsd:complexType name="Say_type" mixed="true">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="Se" type="Se_type" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:choice>
+    <xsd:attribute name="img" type="xsd:string" use="optional" />
+    <xsd:attribute name="name" type="xsd:string" use="required" />    
+  </xsd:complexType>
+
+
+  <!-- seの要素は必ずnull。属性fileは必須 -->
+  <xsd:complexType name="Se_type">
+    <xsd:attribute name="file" type="xsd:string" use="required" />
+  </xsd:complexType>
+
+  <!-- jmpの要素はnullでもいい。属性fileは必須 -->
+  <xsd:complexType name="Jmp_type">
+    <xsd:simpleContent>
+      <xsd:extension base="xsd:string">
+        <xsd:attribute name="file" type="xsd:string" use="required" />
+      </xsd:extension>
+    </xsd:simpleContent>
+  </xsd:complexType>
+</xsd:schema>
