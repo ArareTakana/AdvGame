@@ -9,18 +9,11 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class MyDefaultHandler extends DefaultHandler
 {
-    Stack<Node> stack;
+    Stack<Node> nodes;
 
     public MyDefaultHandler()
     {
-        this.stack = new Stack<Node>();
-    }
-
-    // 文書の開始通知
-    @Override
-    public void startDocument()
-    {
-        System.out.println("StartDocument");
+        this.nodes = new Stack<Node>();
     }
 
     // 要素の開始通知
@@ -28,33 +21,43 @@ public class MyDefaultHandler extends DefaultHandler
     public void startElement(String namespaceURI, String localName,
             String qName, Attributes attributes)
     {
-        //多態性を利用して要素毎にインスタンスを変える。
-        //クラス名からインスタンスを作る関数があったはず。
-        BgNode node = new BgNode(attributes);
+        Node node;
+        try
+        {
+            //タグ名からNodeのインスタンスを作成する．
+            //@see http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/lang/Class.html#newInstance() 
+            final String nodeClassName = this.getClass().getPackage().getName()
+                    + "." + qName + "Node";
+            Class<?> nodeClass = Class.forName(nodeClassName);
+            node = (Node) nodeClass.newInstance();
+        }
+        catch (Exception e)
+        {
+            node = Node.NULL;
+        }
 
-        this.stack.push(node);
+        node.start(attributes);
+        this.nodes.push(node);
     }
 
     // 要素内の文字データの通知
     @Override
     public void characters(char[] ch, int start, int length)
     {
-        this.stack.peek().setText(new String(ch, start, length));
+        //文字列を読み込み，先頭末尾の空白やタブを取り除く
+        String plainText = new String(ch, start, length);
+        String adjustedText = plainText.trim().replaceAll("\t", "");
+        
+        Node nowNode = this.nodes.peek();
+        nowNode.setText(adjustedText);
     }
 
     // 要素の終了通知
     @Override
     public void endElement(String namespaceURI, String localName, String qName)
     {
-        Node nowNode = this.stack.pop();
+        Node nowNode = this.nodes.pop();
         nowNode.end();
-    }
-
-    // 文書の終了通知
-    @Override
-    public void endDocument()
-    {
-        System.out.println("endDocument");
     }
 
     /*****************************************************/
@@ -85,4 +88,17 @@ public class MyDefaultHandler extends DefaultHandler
                 + ex.getColumnNumber() + "桁]" + ex.getMessage();
         System.out.println(warningMessage);
     }
+
+    // 文書の開始通知
+    //  @Override
+    //  public void startDocument()
+    //  {
+    //      //        System.out.println("StartDocument");
+    //  }
+    // 文書の終了通知
+    //    @Override
+    //    public void endDocument()
+    //    {
+    //        //        System.out.println("endDocument");
+    //    }
 }

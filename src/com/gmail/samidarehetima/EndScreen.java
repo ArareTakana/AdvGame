@@ -41,7 +41,7 @@ public class EndScreen extends GameObject
     public void render(Graphics2D g)
     {
         this.background.render(g);
-        
+
         SystemFont font = new SystemFont(new Font("Monospace", Font.BOLD, 30));
         font.setColor(Color.WHITE);
         font.drawString(g, "End...", super.getWidth() / 2,

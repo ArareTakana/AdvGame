@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Snr xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="./scenario.xsd">
-  <Bg msc="pop01.mp3" img="school01.jpg">
-    bgのテキストが主にシナリオとして表示される．
-    bgではBGMと背景画を指定できる．
-    <Say name="キャラ名" img="girl.png">
-      セリフはsayタグで表す．
-    </Say>
-<!--  
-    効果音は，<Se file="bom.wav"/>で鳴らせる。これはsayタグでも使えるようにするつもりだ．
-    <Jmp file="scenario02.xml"/>は他のファイルへのジャンプ命令
-    <Jmp file="scenario03.xml">の要素が非nullの場合，ボタンになる</Jmp>
-    <Jmp file="scenario03.xml">を複数並べることで，条件分岐を行う。</Jmp>
- -->
-  </Bg>
+	xsi:noNamespaceSchemaLocation="scenario.xsd">
+	<Bg msc="pop01.mp3" img="school01.jpg">
+		bgのテキストが主にシナリオとして表示される．
+		bgではBGMと背景画を指定できる．
+		<Say name="キャラ名" img="girl.png"> セリフはsayタグで表す． </Say>
+		効果音は，<Se file="bom.wav" />で鳴らせる。これはsayタグでも使える．
+		<Jmp file="scenario02.xml" />
+		は他のファイルへのジャンプ命令
+		<Jmp file="scenario03.xml">の要素が非nullの場合，ボタンになる</Jmp>
+		<Jmp file="scenario03.xml">を複数並べることで，条件分岐を行う。</Jmp>
+	</Bg>
+	<Bg>
+		2つ目のBg
+	</Bg>
 </Snr>

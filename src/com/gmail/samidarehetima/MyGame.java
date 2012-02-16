@@ -14,18 +14,18 @@ public class MyGame extends GameEngine implements GameScreenIds
     public GameObject getGame(int GameID)
     {
         return new StageScreen(this);
-        
-//        switch (GameID)
-//        {
-//        case GameScreenIds.TITLE_SCREEN:
-//            return new TitleScreen(this);
-//        case GameScreenIds.STAGE_SCREEN:
-//            return new StageScreen(this);
-//        case GameScreenIds.END_SCREEN:
-//            return new EndScreen(this);
-//        }
-//
-//        return null;
+
+        //        switch (GameID)
+        //        {
+        //        case GameScreenIds.TITLE_SCREEN:
+        //            return new TitleScreen(this);
+        //        case GameScreenIds.STAGE_SCREEN:
+        //            return new StageScreen(this);
+        //        case GameScreenIds.END_SCREEN:
+        //            return new EndScreen(this);
+        //        }
+        //
+        //        return null;
     }
 
     public static void main(String[] args)

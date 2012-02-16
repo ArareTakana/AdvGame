@@ -27,12 +27,11 @@ public class SampleSax
             // SAXパーサーを取得
             SAXParser saxParser = saxParserFactory.newSAXParser();
             InputSource inputSource = new InputSource(input);
-            
+
             MyDefaultHandler handler = new MyDefaultHandler();
             // XMLファイルをリード
             saxParser.parse(inputSource, handler);
 
-            
         }
         catch (Exception e)
         {
