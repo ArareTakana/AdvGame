@@ -25,7 +25,8 @@ public class MyDefaultHandler extends DefaultHandler
         try
         {
             //タグ名からNodeのインスタンスを作成する．
-            //@see http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/lang/Class.html#newInstance() 
+            //@see http://java.sun.com/j2se/1.5.0/ja/docs/ja/api/java/lang/Class.html#newInstance()
+            //@see http://www.syboos.jp/java/doc/create-object-instance-from-string.html
             final String nodeClassName = this.getClass().getPackage().getName()
                     + "." + qName + "Node";
             Class<?> nodeClass = Class.forName(nodeClassName);
