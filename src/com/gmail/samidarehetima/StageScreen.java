@@ -4,10 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
+import com.gmail.samidarehetima.advgame.audio.JavaLayerMp3Renderer;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
+import com.golden.gamedev.engine.BaseAudioRenderer;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.golden.gamedev.object.font.SystemFont;
@@ -15,7 +19,6 @@ import com.golden.gamedev.object.font.SystemFont;
 //@see GTGEで遊ぼう http://springotherside.web.fc2.com/gtge/sec03_01.html
 public class StageScreen extends GameObject
 {
-    //    private PlayField playField;
     private String          text = "";
 
     private ImageBackground background;
@@ -47,30 +50,32 @@ public class StageScreen extends GameObject
         textboxSprite.move((WIN_W - textboxSprite.getWidth()) / 2, WIN_H
                 - textboxSprite.getHeight() - 32);
 
-        //        this.playField = new PlayField();
-        //        this.playField.setBackground(background);
-        //        this.playField.add(standSprite);
-        //        this.playField.add(textboxSprite);
-
         this.text = "あなたって本当に最低のクズだわ";
+
+        //BGM
+        bsMusic.setBaseRenderer(new JavaLayerMp3Renderer() );
+        playMusic("sound/bgm01.mp3");
     }
 
     //     更新処理
     @Override
     public void update(long elapsedTime)
     {
-        //        this.playField.update(elapsedTime);
         this.background.update(elapsedTime);
         this.standSprite.update(elapsedTime);
         this.textboxSprite.update(elapsedTime);
 
         if (click())
         {
+            //立ち絵をランダムに変更する
             Random rnd = new Random();
             int number = rnd.nextInt(4) + 1;
-            String filename="picture/stand0"+number+".png";
+            String filename = "picture/stand0" + number + ".png";
 
             this.standSprite.setImage(getImage(filename));
+            
+            //効果音を鳴らす
+            playSound("sound/se01.wav");
         }
 
         //        if (click())
@@ -84,7 +89,6 @@ public class StageScreen extends GameObject
     @Override
     public void render(Graphics2D g)
     {
-        //        this.playField.render(g);
         this.background.render(g);
         this.standSprite.render(g);
         this.textboxSprite.render(g);
