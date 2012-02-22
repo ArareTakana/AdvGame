@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.Random;
 
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
-import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.golden.gamedev.object.font.SystemFont;
@@ -15,8 +15,12 @@ import com.golden.gamedev.object.font.SystemFont;
 //@see GTGEで遊ぼう http://springotherside.web.fc2.com/gtge/sec03_01.html
 public class StageScreen extends GameObject
 {
-//    private PlayField playField;
-    private String    text = "";
+    //    private PlayField playField;
+    private String          text = "";
+
+    private ImageBackground background;
+    private Sprite          standSprite;
+    private Sprite          textboxSprite;
 
     public StageScreen(GameEngine parent)
     {
@@ -31,22 +35,22 @@ public class StageScreen extends GameObject
         final int WIN_H = super.getHeight();
 
         //背景画像の表示
-        ImageBackground background = new ImageBackground(
+        this.background = new ImageBackground(
                 getImage("picture/background01.jpg"), WIN_W, WIN_H);
 
         //立ち絵のスプライト
-        Sprite standSprite = new Sprite(getImage("picture/stand02.png"), 0, 0);
+        standSprite = new Sprite(getImage("picture/stand02.png"), 0, 0);
         standSprite.move((WIN_W - standSprite.getWidth()) / 2.0, 0);
 
         //テキスト領域のスプライト
-        Sprite textboxSprite = new Sprite(getImage("picture/textbox.png"), 0, 0);
+        textboxSprite = new Sprite(getImage("picture/textbox.png"), 0, 0);
         textboxSprite.move((WIN_W - textboxSprite.getWidth()) / 2, WIN_H
                 - textboxSprite.getHeight() - 32);
 
-//        this.playField = new PlayField();
-//        this.playField.setBackground(background);
-//        this.playField.add(standSprite);
-//        this.playField.add(textboxSprite);
+        //        this.playField = new PlayField();
+        //        this.playField.setBackground(background);
+        //        this.playField.add(standSprite);
+        //        this.playField.add(textboxSprite);
 
         this.text = "あなたって本当に最低のクズだわ";
     }
@@ -55,7 +59,19 @@ public class StageScreen extends GameObject
     @Override
     public void update(long elapsedTime)
     {
-//        this.playField.update(elapsedTime);
+        //        this.playField.update(elapsedTime);
+        this.background.update(elapsedTime);
+        this.standSprite.update(elapsedTime);
+        this.textboxSprite.update(elapsedTime);
+
+        if (click())
+        {
+            Random rnd = new Random();
+            int number = rnd.nextInt(4) + 1;
+            String filename="picture/stand0"+number+".png";
+
+            this.standSprite.setImage(getImage(filename));
+        }
 
         //        if (click())
         //        {
@@ -68,7 +84,10 @@ public class StageScreen extends GameObject
     @Override
     public void render(Graphics2D g)
     {
-//        this.playField.render(g);
+        //        this.playField.render(g);
+        this.background.render(g);
+        this.standSprite.render(g);
+        this.textboxSprite.render(g);
 
         //文字表示
         SystemFont font = new SystemFont(new Font("Monospace", Font.BOLD, 16));
