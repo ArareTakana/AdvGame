@@ -1,4 +1,4 @@
-package com.gmail.samidarehetima;
+package com.web.fc2.samidarehetima.advgame.gtgealpha;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -19,7 +19,7 @@ import com.golden.gamedev.object.font.SystemFont;
  * ラベルなど，GTGE-GUIの他の機能も必要そうなら使ってもいい。
  * 
  */
-public class OrgButton extends Sprite
+public class ButtonSprite extends Sprite
 {
     private static final long serialVersionUID = -4054972507274515971L;
     private final int         ButtonWidth      = 128;
@@ -30,7 +30,7 @@ public class OrgButton extends Sprite
     private ButtonListener    bl               = null;
     private String            text             = "button";
 
-    public OrgButton(BaseInput bsInput, String text, double x, double y)
+    public ButtonSprite(BaseInput bsInput, String text, double x, double y)
     {
         super(x, y);
         this.bsInput = bsInput;

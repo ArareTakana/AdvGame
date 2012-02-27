@@ -1,4 +1,4 @@
-package com.gmail.samidarehetima;
+package com.web.fc2.samidarehetima.advgame.engine;
 
 import java.awt.Graphics2D;
 
@@ -6,6 +6,8 @@ import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.PlayField;
 import com.golden.gamedev.object.background.ImageBackground;
+import com.web.fc2.samidarehetima.advgame.gtgealpha.ButtonListener;
+import com.web.fc2.samidarehetima.advgame.gtgealpha.ButtonSprite;
 
 public class TitleScreen extends GameObject implements GameScreenIds
 {
@@ -30,7 +32,7 @@ public class TitleScreen extends GameObject implements GameScreenIds
 
             //ゲームの開始ボタン
             final int margin = 64;
-            OrgButton startButton = new OrgButton(super.bsInput, "Start",
+            ButtonSprite startButton = new ButtonSprite(super.bsInput, "Start",
                     WIN_W * 3 / 4, margin);
             startButton.setActionListener(new ButtonListener() {
                 @Override
@@ -43,7 +45,7 @@ public class TitleScreen extends GameObject implements GameScreenIds
             this.playField.add(startButton);
 
             //ゲームの終了ボタン
-            OrgButton endButton = new OrgButton(super.bsInput, "Exit",
+            ButtonSprite endButton = new ButtonSprite(super.bsInput, "Exit",
                     WIN_W * 3 / 4, startButton.getY() + startButton.getHeight()
                             + margin);
             endButton.setActionListener(new ButtonListener() {

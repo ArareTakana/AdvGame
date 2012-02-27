@@ -1,4 +1,4 @@
-package com.gmail.samidarehetima;
+package com.web.fc2.samidarehetima.advgame.engine;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,13 +8,13 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Random;
 
-import com.gmail.samidarehetima.advgame.audio.JavaLayerMp3Renderer;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameObject;
 import com.golden.gamedev.engine.BaseAudioRenderer;
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.background.ImageBackground;
 import com.golden.gamedev.object.font.SystemFont;
+import com.web.fc2.samidarehetima.advgame.gtgealpha.JavaLayerMp3Renderer;
 
 //@see GTGEで遊ぼう http://springotherside.web.fc2.com/gtge/sec03_01.html
 public class StageScreen extends GameObject
@@ -74,8 +74,6 @@ public class StageScreen extends GameObject
 
             this.standSprite.setImage(getImage(filename));
             
-            //効果音を鳴らす
-//            playSound("sound/se01.wav");
         }
 
         //        if (click())

@@ -1,4 +1,4 @@
-package com.gmail.samidarehetima.advgame.audio;
+package com.web.fc2.samidarehetima.advgame.gtgealpha;
 /*
  * Copyright (c) 2008 Golden T Studios.
  *

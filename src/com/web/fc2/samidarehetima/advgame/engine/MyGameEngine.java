@@ -1,4 +1,4 @@
-package com.gmail.samidarehetima;
+package com.web.fc2.samidarehetima.advgame.engine;
 
 import java.awt.Dimension;
 
