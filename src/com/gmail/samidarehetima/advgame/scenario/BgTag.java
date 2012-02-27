@@ -1,18 +1,18 @@
 package com.gmail.samidarehetima.advgame.scenario;
 
-import org.xml.sax.Attributes;
+import java.util.Map;
 
-public class BgNode implements Node
+public class BgTag implements Tag
 {
     private String mscFileName;
     private String imgFileName;
     private String sentence;
 
     @Override
-    public void start(Attributes atts)
+    public void start(Map<String, String> attributes)
     {
-        this.mscFileName = atts.getValue("msc");
-        this.imgFileName = atts.getValue("img");
+        this.mscFileName = attributes.get("msc");
+        this.imgFileName = attributes.get("img");
         
         System.out.println("<Bg>");
         System.out.println("mscFileName: " + this.mscFileName);
@@ -20,7 +20,7 @@ public class BgNode implements Node
     }
 
     @Override
-    public void setText(String text)
+    public void act(String text)
     {
         this.sentence = text;
         System.out.print(this.sentence);

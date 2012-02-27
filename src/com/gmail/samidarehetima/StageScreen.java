@@ -53,8 +53,8 @@ public class StageScreen extends GameObject
         this.text = "あなたって本当に最低のクズだわ";
 
         //BGM
-        bsMusic.setBaseRenderer(new JavaLayerMp3Renderer() );
-        playMusic("sound/bgm01.mp3");
+//        bsMusic.setBaseRenderer(new JavaLayerMp3Renderer() );
+//        playMusic("sound/bgm01.mp3");
     }
 
     //     更新処理
@@ -75,7 +75,7 @@ public class StageScreen extends GameObject
             this.standSprite.setImage(getImage(filename));
             
             //効果音を鳴らす
-            playSound("sound/se01.wav");
+//            playSound("sound/se01.wav");
         }
 
         //        if (click())
