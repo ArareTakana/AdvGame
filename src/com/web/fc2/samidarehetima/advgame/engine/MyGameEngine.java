@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import com.golden.gamedev.GameEngine;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.GameObject;
+import com.web.fc2.samidarehetima.advgame.scenario.Scenario;
 
 public class MyGameEngine extends GameEngine implements GameScreenIds
 {
@@ -31,6 +32,8 @@ public class MyGameEngine extends GameEngine implements GameScreenIds
         GameLoader game = new GameLoader();
         game.setup(new MyGameEngine(), new Dimension(640, 480), false);
         game.start();
+        
+        
     }
     
     //出荷品であることを示すフラグ。

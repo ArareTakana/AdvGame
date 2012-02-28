@@ -31,15 +31,21 @@ public interface Tag
 
                                      @Override
                                      public void start()
-                                     {}
+                                     {
+                                         System.out.print("<NULL>");
+                                     }
 
                                      @Override
                                      public void act()
-                                     {}
+                                     {
+                                         System.out.print("NULL");
+                                     }
 
                                      @Override
                                      public void end()
-                                     {}
+                                     {
+                                         System.out.print("</NULL>");
+                                     }
 
                                  };
 }

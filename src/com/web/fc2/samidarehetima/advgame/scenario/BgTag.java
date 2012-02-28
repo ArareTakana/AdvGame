@@ -32,7 +32,8 @@ public class BgTag implements Tag
     @Override
     public void act()
     {
-        System.out.print(this.sentence);
+        ShowingText.INSTASNCE.setText(sentence);
+//        System.out.print(this.sentence);
     }
 
     @Override

@@ -9,13 +9,16 @@ import com.golden.gamedev.GameObject;
 import com.golden.gamedev.object.Background;
 import com.golden.gamedev.object.background.ColorBackground;
 import com.web.fc2.samidarehetima.advgame.gtgealpha.TextboxSprite;
+import com.web.fc2.samidarehetima.advgame.scenario.Scenario;
+import com.web.fc2.samidarehetima.advgame.scenario.ShowingText;
 
 public class StageScreen extends GameObject
 {
     //[memo]BackgroundにはImageBackgroundもColorBackgroundもインスタンスできる
-    private Background background = null;
-    private TextboxSprite textbox = null;
-    
+    private Background    background = null;
+    private TextboxSprite textbox    = null;
+    private Scenario      scenarioNow;
+
     public StageScreen(GameEngine parent)
     {
         super(parent);
@@ -24,11 +27,15 @@ public class StageScreen extends GameObject
     @Override
     public void initResources()
     {
-        background = new ColorBackground(Color.BLACK, super.getWidth(), super.getHeight());
-        textbox = new TextboxSprite(new Dimension(this.getWidth(), this.getHeight()));
-       
-        //ここでControllerのインスタンスを作る．
-        //renderとupdateでtextbox#setText()などを呼び出し，画面の更新を行う
+        background = new ColorBackground(Color.BLACK, super.getWidth(),
+                super.getHeight());
+        textbox = new TextboxSprite(new Dimension(this.getWidth(),
+                this.getHeight()));
+
+        //実際にはここでControllerのインスタンスを作り，UIとシナリオ部の仲介役にする．
+        //Controllerからシナリオ部の情報を受けとり，renderとupdateで
+        //textbox#setText()などを呼び出し，画面の更新を行う
+        scenarioNow = new Scenario("xml/scenario.xml");
     }
 
     @Override
@@ -43,9 +50,13 @@ public class StageScreen extends GameObject
     {
         background.update(elapsedTime);
         textbox.update(elapsedTime);
-        if(click())
+        if (click())
         {
-            textbox.setText("あへぇぇぇぇぇぇぇぇぇぇぇぇ");
+            if (scenarioNow.hasNextTag())
+            {
+                scenarioNow.doNextTag();
+            }
+            textbox.setText(ShowingText.INSTASNCE.getText());
         }
     }
 
