@@ -29,7 +29,7 @@ public class StageScreen extends GameObject
     {
         background = new ColorBackground(Color.BLACK, super.getWidth(),
                 super.getHeight());
-        textbox = new TextboxSprite(new Dimension(this.getWidth(),
+        textbox = new TextboxSprite(getImage("picture/textbox.png"), new Dimension(this.getWidth(),
                 this.getHeight()));
 
         //実際にはここでControllerのインスタンスを作り，UIとシナリオ部の仲介役にする．
